@@ -45,7 +45,7 @@ def check_ip(ip):
         pass
 
 if __name__ == '__main__':
-    with ThreadPoolExecutor(10) as executor:
+    with ThreadPoolExecutor(50) as executor:
         executor.map(check_ip,get_all_ips())
     with zipfile.ZipFile('output.zip','w') as zip_file:
         zip_file.write('output.txt',compress_type=zipfile.ZIP_DEFLATED)
