@@ -31,7 +31,7 @@ def check_ip(ip):
         data = json.loads(content)
         if data["Server"] == "cloudflare":
             print(url)
-            with open('output/output.txt','a') as fw:
+            with open('output.txt','a') as fw:
                 fw.write(str(url) + '\n')
         else:
             print(ip)
