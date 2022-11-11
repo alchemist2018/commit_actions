@@ -31,9 +31,10 @@ jobs:
         # Runs a single command using the runners shell
       - name: install requirement
         run: pip install -r CF/requirements.txt
+        
         # Runs a single command using the runners shell
-#       - name: run my script
-#         run: python CF/my_script.py
+      - name: run my script
+        run: python CF/my_script.py
 
         
       # Runs a single command using the runners shell
