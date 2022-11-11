@@ -52,4 +52,4 @@ jobs:
         with:
           args: output.txt
         env:
-          GITHUB_TOKEN: ${{ secrets.CF }}
+          GITHUB_TOKEN: ${{ secrets.CF_TOKEN }}
