@@ -34,10 +34,10 @@ def check_ip(ip):
             with open('output.txt','a') as fw:
                 fw.write(str(url) + '\n')
         else:
-            print(ip)
+            pass
     except:
-        print(ip)
+        pass
 
 if __name__ == '__main__':
-    with ThreadPoolExecutor(5) as executor:
+    with ThreadPoolExecutor(10) as executor:
             executor.map(check_ip,IP('140.238.3.0/24'))
