@@ -29,8 +29,8 @@ jobs:
           python-version: '3.10'
           
         # Runs a single command using the runners shell
-#       - name: install requirement
-#         run: pip install -r requirements.txt
+      - name: install requirement
+        run: pip install -r CF/requirements.txt
         # Runs a single command using the runners shell
 #       - name: install requirement
 #         run: python my_script.py
