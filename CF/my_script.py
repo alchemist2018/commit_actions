@@ -1,5 +1,5 @@
 from IPy import IP, IPSet
-
+import zipfile
 import requests
 import json
 from concurrent.futures import ThreadPoolExecutor
@@ -32,7 +32,7 @@ def check_ip(ip):
         if data["Server"] == "cloudflare":
             print(url)
             with open('output.txt','a') as fw:
-                fw.write(str(url) + '\n')
+                fw.write(str(ip) + '\n')
         else:
             pass
     except:
@@ -40,4 +40,6 @@ def check_ip(ip):
 
 if __name__ == '__main__':
     with ThreadPoolExecutor(10) as executor:
-            executor.map(check_ip,IP('140.238.3.0/24'))
+        executor.map(check_ip,IP('140.238.3.0/24'))
+    with zipfile.ZipFile('output.zip','w') as zip_file:
+        zip_file.write('output.txt',compress_type=zipfile.ZIP_DEFLATED)
