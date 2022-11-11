@@ -7,17 +7,23 @@ from concurrent.futures import ThreadPoolExecutor
 
 
 # 获得所有待测试ip
-# oracle  https://docs.oracle.com/en-us/iaas/tools/public_ip_ranges.json
+def get_all_ips():
+    set = IPSet()
+    ips =[]
+    url = 'https://docs.oracle.com/en-us/iaas/tools/public_ip_ranges.json'
 
-# def get_all_ips(hosts_list_path):
-#     set = IPSet([IP('1.1.1.1/32')])
-#     ips = []
-#     with open(hosts_list_path, "r") as f:
-#         for host in f.readlines():
-#             set.add(IP(host))
-#     for item in set:
-#         ips += item 
-#     return ips
+    with requests.get(url) as r:
+        list = json.loads(r.content)
+
+    for i in list['regions']:
+        if i['region'] in ['ap-singapore-1','ap-melbourne-1']:
+            for j in i['cidrs']:
+                if 'OCI' in j['tags']:
+                    set.add(IP(j['cidr']))
+
+    for item in set:
+        ips += item
+    return ips
 
       
 
@@ -40,6 +46,6 @@ def check_ip(ip):
 
 if __name__ == '__main__':
     with ThreadPoolExecutor(10) as executor:
-        executor.map(check_ip,IP('140.238.3.0/24'))
+        executor.map(check_ip,get_all_ips())
     with zipfile.ZipFile('output.zip','w') as zip_file:
         zip_file.write('output.txt',compress_type=zipfile.ZIP_DEFLATED)
