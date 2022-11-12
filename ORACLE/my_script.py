@@ -45,7 +45,7 @@ def check_ip(ip):
         pass
 
 if __name__ == '__main__':
-    with ThreadPoolExecutor(100) as executor:
+    with ThreadPoolExecutor(200) as executor:
         executor.map(check_ip,get_all_ips())
 #     with zipfile.ZipFile('oracle.zip','w') as zip_file:
 #         zip_file.write('oracle.txt',compress_type=zipfile.ZIP_DEFLATED)
