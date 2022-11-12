@@ -1,5 +1,5 @@
 from IPy import IP, IPSet
-import zipfile
+# import zipfile
 import requests
 import json
 from concurrent.futures import ThreadPoolExecutor
@@ -37,7 +37,7 @@ def check_ip(ip):
         data = json.loads(content)
         if data["Server"] == "cloudflare":
             print(url)
-            with open('output.txt','a') as fw:
+            with open('oracle.txt','a') as fw:
                 fw.write(str(ip) + '\n')
         else:
             pass
@@ -47,5 +47,5 @@ def check_ip(ip):
 if __name__ == '__main__':
     with ThreadPoolExecutor(100) as executor:
         executor.map(check_ip,get_all_ips())
-    with zipfile.ZipFile('output.zip','w') as zip_file:
-        zip_file.write('output.txt',compress_type=zipfile.ZIP_DEFLATED)
+#     with zipfile.ZipFile('oracle.zip','w') as zip_file:
+#         zip_file.write('oracle.txt',compress_type=zipfile.ZIP_DEFLATED)
