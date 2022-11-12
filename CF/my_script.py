@@ -16,7 +16,7 @@ def get_all_ips():
         list = json.loads(r.content)
 
     for i in list['regions']:
-        if i['region'] in ['ap-singapore-1','ap-melbourne-1']:
+        if i['region'] in ['ap-singapore-1','ap-seoul-1','ap-tokyo-1','ap-osaka-1']:
             for j in i['cidrs']:
                 if 'OCI' in j['tags']:
                     set.add(IP(j['cidr']))
